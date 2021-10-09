@@ -1,0 +1,93 @@
+:root{
+    --speed: 300ms;
+}
+.home-slider .carousel-item{
+/* height: 40vw; */
+
+}
+.home-slider .carousel-item img{
+   min-height: 300px;
+}
+.home-slider .carousel-indicators li{
+width: 1.4rem;
+height: 1.4rem;
+border-radius: 50%;
+}
+.home-slider .carousel-caption{
+bottom: 50%;
+transform: translateY(50%);
+}
+.home-slider .carousel-caption h3{
+    
+    font-size: 5rem;
+  transform: translateY(-100px);
+  opacity: 0;
+    animation: fade-down var(--speed) cubic-bezier(0,.26,.69,1.01) 100ms 1 normal forwards;
+}
+@keyframes fade-down {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+}
+@keyframes fade-up {
+    0%{
+        transform: translateY(300px);
+        opacity: 0;
+      
+    }
+  
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    
+    }
+}
+.home-slider .carousel-caption p{
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    transform: translateY(300px);
+    opacity: 0;
+      animation: fade-up var(--speed) cubic-bezier(0,.26,.69,1.01) 200ms 1 normal forwards;
+}
+.home-slider .carousel-caption .transparent-btn{
+    transform: translateY(300px);
+    opacity: 0;
+      animation: fade-up var(--speed) cubic-bezier(0,.26,.69,1.01) 300ms 1 normal forwards;
+}
+.custom-controll-icon i{
+font-size: 3rem;
+color: white;
+}
+.custom-controll-icon {
+padding: 1rem 2rem;
+transition: all 300ms ease;
+}
+.custom-controll-icon:hover{
+    background: var(--color-primary);
+
+}
+.home-slider .carousel-control-next, .home-slider .carousel-control-prev{
+    opacity: 1;
+    transition: all 300ms ease;
+}
+/* .home-slider .carousel-control-next:hover,.home-slider .carousel-control-prev:hover{
+    background: rgba(255, 255, 255, 0.138);
+} */
+.home-slider .carousel-control-prev{
+    transform: translateX(-100%);
+}
+.home-slider .carousel-control-next{
+    transform: translateX(100%);
+}
+.home-slider:hover .carousel-control-prev, .home-slider:hover .carousel-control-next{
+transform: translateX(0);
+}
+.home-slider{
+    overflow-x: hidden;
+}

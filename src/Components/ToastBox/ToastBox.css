@@ -1,0 +1,15 @@
+.my-toast{
+    position: fixed;
+    bottom: 5%;
+    left: 5%;
+    min-width: 30%;
+    z-index: 9999;
+}
+.my-toast .toast-header{
+    background-color: rgb(0 0 0 / 85%);
+    
+}
+.my-toast  .close{
+    font-size: 20px !important;
+    color: white !important;
+}

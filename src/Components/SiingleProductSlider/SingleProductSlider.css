@@ -1,0 +1,26 @@
+.single-product-slider .carousel-indicators{
+bottom: calc(-40%);
+}
+.single-product-slider .carousel-indicators li{
+    border: 1px solid var(--color-primary);
+    padding: 1px;
+}
+.selected-img img{
+    width: 100% !important;
+   /* cursor: crosshair; */
+}
+.single-product-slider .carousel-inner img {
+    cursor: pointer;
+    transition: all 300ms ease;
+    border: 1px solid transparent;
+
+}
+.single-product-slider .carousel-inner img:hover {
+    border-color: var(--color-primary);
+}
+
+@media only screen and (max-width:767px){
+    .single-product-slider .carousel-indicators{
+        bottom: -25px;
+        }
+}

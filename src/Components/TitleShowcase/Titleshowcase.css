@@ -1,0 +1,23 @@
+.title-showcase{
+    height: 25rem;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.575),rgba(0, 0, 0, 0.575)) , url("https://static.wixstatic.com/media/f391cb_be1cf2659cd842ad8da017a9c3cfced9~mv2.png/v1/fill/w_987,h_625,al_c,q_90,usm_0.66_1.00_0.01/f391cb_be1cf2659cd842ad8da017a9c3cfced9~mv2.webp");
+    background-size: 100% 100% , cover;
+
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.title-showcase h1{
+    letter-spacing: 4px;
+    font-size: 5rem;
+    color: white;
+   text-transform: uppercase;
+}
+.title-showcase p{
+    letter-spacing: 3px;
+}

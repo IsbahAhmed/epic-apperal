@@ -1,0 +1,76 @@
+.product-img{
+    transition: all 300ms ease;
+    cursor: pointer;
+  position: relative;
+}
+.product-img img{
+    width: 100%;
+
+}
+.product-list-item:hover .product-img .img-1{
+    opacity: 0;
+}
+.product-list-item:hover .product-img .img-2{
+    opacity: 1;
+}
+.product-img::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.474);
+    top: 0;
+    left: 0;
+    transition: all 300ms ease;
+    opacity: 0;
+    pointer-events: none;
+}
+.product-list-item:hover .product-img::after{
+    opacity: 1;
+}
+.product-img:hover .action-btn{
+    transform: scaleY(1);
+}
+.product-img .img-1{
+    z-index: 5;
+    transition: all 300ms ease;
+}
+.product-img .img-2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+}
+.pd-text{
+font-weight: 600;
+}
+.product-img .add-ons{
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+}
+.add-ons .action-btn{
+    width: 4rem;
+    height:4rem;
+    background: #666 none repeat scroll 0 0;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease;
+    transform: scaleY(0);
+    transform-origin: bottom;
+}
+.add-ons .action-btn:hover{
+    background-color: var(--color-primary);
+}
+.add-ons .action-btn i{
+    font-size: 1.6rem;
+    color: white;
+}
