@@ -1,14 +1,14 @@
 import { request } from "../../../Axios"
 import { CREATED } from "../../../HTTPStatus";
 
-export const placeOrder =async (orderObj)=>{
+export const placeOrder = async (orderObj)=>{
 try {
     const result = await request.post(`/orders`,orderObj);
     if(result.status == CREATED){
-        return 1;
+        return result;
     }
     else{
-        throw "Order cannot be placed"
+      return 0;
     }
 } catch (error) {
     console.log(error);

@@ -87,7 +87,7 @@ const userReducer = persistReducer(
                 loginProgress:false,
                 loginFailed:false
             }
-           case LOGIN_FAILED:
+       case LOGIN_FAILED:
                return {
                    ...state,
                    loginFailed:true,
@@ -96,6 +96,7 @@ const userReducer = persistReducer(
                 
                } 
       case REMOVE_USER:
+        localStorage.removeItem("jwt")
         return {
           user: null,
           newUser: null,

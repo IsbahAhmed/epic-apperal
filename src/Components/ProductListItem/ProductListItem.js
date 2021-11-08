@@ -7,11 +7,16 @@ import {
   removeFromWishlist,
 } from "../../Redux/wishlistReducer/wishlistActions";
 import ToastBox from "../ToastBox/ToastBox";
-
+import sha256 from 'crypto-js/sha256';
+import hmacSHA512 from 'crypto-js/hmac-sha512';
+import Base64 from 'crypto-js/enc-base64';
 import "./ProductListItem.css";
+import CryptoJS from "crypto-js"
 const ProductListItem = ({ handleShow, product }) => {
   const dispatch = useDispatch();
   const { name, images, price, discountedPrice, _id } = product;
+  var encryptedId = CryptoJS.AES.encrypt(_id, 'secret key 123').toString();
+  encryptedId = encryptedId.replace("/","-")
   const [toast, setToast] = useState(false);
   const [existinWishlist, setExistinWishList] = useState(false);
   const [toastText, setToastText] = useState("");
@@ -43,7 +48,7 @@ const ProductListItem = ({ handleShow, product }) => {
   return (
     <div className="product-list-item px-sm-0 px-5">
       <div className="product-img">
-        <Link to={`/single-product/${_id}`}>
+        <Link to={`/single-product/${encryptedId}`}>
           <img src={images[0]?.image} className="img-1" alt="" />
           <img src={images[1]?.image} className="img-2" alt="" />
         </Link>

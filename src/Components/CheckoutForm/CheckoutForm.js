@@ -3,6 +3,10 @@ import MyButton from "../MyButton/MyButton";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Select from "react-dropdown-select";
+import { placeOrder } from "../../Redux/sagas/orderWatcher/orderApi";
+import { ErrorAlert } from "../Alert/Alert";
+import { useSelector } from "react-redux";
+import {useHistory} from "react-router-dom"
 const schema = Yup.object().shape({
   firstName: Yup.string()
     .trim()
@@ -40,8 +44,8 @@ const schema = Yup.object().shape({
     .trim()
     .min(10,"Minimum 10 letters")
     .max(50,"Maximum 50 letters"),
-    city: Yup.string()
-    .trim().required("Please select city").max(50,"Maximum 50 letters"),
+    // city: Yup.string()
+    // .trim().required("Please select city").max(50,"Maximum 50 letters"),
    
 });
 const initialValues = {
@@ -73,9 +77,33 @@ const CheckoutForm = () => {
       value: "lahore",
     },
   ];
-  
-  const handleSubmit = (orderObj) => {
-console.log(orderObj)
+  const cart = useSelector((state)=> state.cart.cartItems);
+  const history = useHistory()
+  const handleSubmit = async (orderObj) => {
+    if(!orderObj.city) orderObj.city = options[0].value;
+    try {
+    let products = cart.map(({productId,quantity})=> ({
+      product:productId,
+      quantity:Number(quantity),
+      customAttr:"Regular"
+    }))
+    orderObj.items = products;
+   
+     const result = await placeOrder(orderObj);
+     if(!result) return ErrorAlert({
+      icon: "error",
+      title: "<h3>Failed to place order.</h3>",
+    })
+
+    history.push("/invoice/asdasdasd")
+    } catch (error) {
+      console.error(error);
+      ErrorAlert({
+        icon: "error",
+        title: "<h3>Failed to place order.</h3>",
+        text: error.message,
+      })
+    }
   };
   const formik = useFormik({
     initialValues,
@@ -177,7 +205,7 @@ console.log(orderObj)
                 valueField="value"
                 options={options}
                 name="city"
-                {...formik.getFieldProps("city")}
+                
               />
                {formik.touched.city && formik.errors.city ? (
             <div className="fv-plugins-message-container">

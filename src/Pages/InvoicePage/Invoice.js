@@ -49,9 +49,9 @@ const Invoice = () => {
         </p>
             </div>
             <div className="d-flex justify-content-center">
-            <MyButton className="btn-secendory mt-5">
+            {/* <MyButton className="btn-secendory mt-5">
                 Confirm order
-            </MyButton>
+            </MyButton> */}
             </div>
         </div>
     )

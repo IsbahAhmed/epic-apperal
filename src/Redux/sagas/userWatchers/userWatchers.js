@@ -1,6 +1,6 @@
 import { FETCH_USER,LOGIN_FAILED,LOGIN_REQUEST, LOGIN_SUCCESSFULL, LOGOUT_REQUEST, REGISTER_REQUEST, REGISTRATION_FAILED, REGISTRATION_SUCCESSFULL, REMOVE_USER, SET_USER } from "../../userReducer/userConstants";
 import { call, put,takeEvery, select,take } from "@redux-saga/core/effects";
-import { logout, signin, signUp } from "./userApi";
+import { signin, signUp } from "./userApi";
 
 function* handleRegister(){
  try {
@@ -14,6 +14,7 @@ function* handleRegister(){
             status:result.status
         }
     })
+   yield window.location.reload()
  } catch (error) {
    
     yield put({
@@ -26,18 +27,12 @@ function* handleRegister(){
 }
 
 function* handleLogout(){
-    try {
-  
-    const result = yield call(logout);
-    if(result == 1){
-     yield   put({
+      // const result = yield call(logout);
+   yield  put({
             type:REMOVE_USER
         })
-    }
-        
-    } catch (error) {
-     yield   console.log(error)
-    }
+       yield window.location.reload()
+    
 }
 function* handleLogin(){
 try {
@@ -50,6 +45,8 @@ try {
             message:result.message
         }
     })
+   yield window.location.reload()
+
 } catch (error) {
     yield put({
         type:LOGIN_FAILED,

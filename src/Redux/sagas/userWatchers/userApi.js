@@ -6,19 +6,20 @@ export var signUp = async (userObj)=>{
   
         try {
           if(firstName && lastName && email && password){
-            var createdUser = await auth.createUserWithEmailAndPassword(email,password)
+            // var createdUser = await auth.createUserWithEmailAndPassword(email,password)
         
-            var user = auth.currentUser;
+            // var user = auth.currentUser;
 
             //Save in mongoDB
-            const result = await request.post(`/user`,{...userObj,userId:user.uid});
+            const result = await request.post(`/user`,userObj);
+        
             if(result.status === 201){
-                await user.sendEmailVerification();
+                // await user.sendEmailVerification();
           
                 return {
                     code: SUCCESS,
                     message:"Successfully registered",
-                    userObj:result.data.data
+                    userObj:result.data
                 }
             }
             else{
@@ -43,36 +44,46 @@ export var signUp = async (userObj)=>{
    
     
 }
-export const logout = async ()=>{
-try {
-    await auth.signOut();
-    return 1;
-} catch (error) {
-    console.log(error)
-    throw error;
-}
-}
+// export const logout = async ()=>{
+// try {
+//     // await auth.signOut();
+  
+//     return 1;
+// } catch (error) {
+//     console.log(error)
+//     throw error;
+// }
+// }
 
 export const signin = async (userObj)=>{
     try {
         var {email,password} = userObj;
-    var {user} = await auth.signInWithEmailAndPassword(email,password);
-    const userFromMongo = await request.get("/user/find/"+user.uid);
-   
-   if(userFromMongo.status == 200){
+    // var {user} = await auth.signInWithEmailAndPassword(email,password);
+    // const userFromMongo = await request.get("/user/find/"+user.uid);
+   const query = await request.post("/user/login",{
+       email,password
+   })
+
+   if(query.status == 200){
+       localStorage.setItem("jwt",query.data.token)
     return {
         code: SUCCESS,
         message:"Successfully registered",
-        user:userFromMongo.data.data
+        user:{
+            ...query.data.data,
+            token:query.data.token
+        }
+        
     }
     
    }
    else{
-       await auth.signOut()
+       
     throw "Authentication Failed";
    }
 
     } catch (error) {
+        console.error(error)
         throw "Wrong email or password";
     }
 }

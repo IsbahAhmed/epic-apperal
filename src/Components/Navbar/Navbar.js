@@ -39,12 +39,12 @@ const Navbar = () => {
           </p>
         </div>
         <div className="col-md-8 nav-links-area">
-          {/* <NavLink to="/auth">
+          <NavLink to="/auth">
               <p className="bbb">
               <i className="fa fa-user mr-3" aria-hidden="true"></i>
               My account
               </p>
-          </NavLink> */}
+          </NavLink>
           <NavLink to="/cart">
               <p className="bbb">
               <i className="fa fa-shopping-cart mr-3" aria-hidden="true"></i>

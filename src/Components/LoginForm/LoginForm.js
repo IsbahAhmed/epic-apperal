@@ -66,7 +66,9 @@ const LoginForm = () => {
       dispatch({
         type: CLEAR_REG_MESSAGE,
       });
+     
     }
+    
   }, [loginMessage]);
 
   return (

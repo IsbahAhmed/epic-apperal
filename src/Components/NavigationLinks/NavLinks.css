@@ -55,6 +55,6 @@ transform: translateX(5px);
 
 .dp-wrapper:hover .nav-dropdown{
   
-    transform: translateX(-50%) scaleY(1);
+    /* transform: translateX(-50%) scaleY(1); */
     
 }

@@ -5,6 +5,7 @@ import MyButton from "../../Components/MyButton/MyButton";
 import { useHistory } from "react-router";
 import QuantityInput from "../../Components/QuantityInput/QuantityInput";
 import SingleProductSlider from "../../Components/SiingleProductSlider/SingleProductSlider";
+import CryptoJS from "crypto-js"
 
 import RatingStars from "../../Components/RatingStars/RatingStars";
 import ProductDescriptionAndReview from "../../Components/ProductDescriptionAndReview/ProductDescriptionAndReview";
@@ -25,7 +26,7 @@ const SingleProduct = ({
     params: { productID },
   },
   fetchSingleProduct,
-  singleProduct,
+  singleProduct={},
   isLoading,
   addToCart,
   cart
@@ -36,7 +37,9 @@ const SingleProduct = ({
     // const queryParams = {
     //   fields: "name,price,discountedPrice,sku,colors,size,quantity,images",
     // };
-    fetchSingleProduct(productID, {});
+    var decryptedId = CryptoJS.AES.decrypt(productID.replace("-","/"), 'secret key 123').toString(CryptoJS.enc.Utf8);
+
+    fetchSingleProduct(decryptedId, {});
   }, [productID, fetchSingleProduct]);
   const [selectedColor, setSelectedColor] = useState();
   const [selectedSize, setSelectedSize] = useState();
